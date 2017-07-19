@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-int findMin(vector<int>& nums)
+int StupidfindMin(vector<int>& nums)
 {
     int len = nums.size();
     if (len == 1) return nums[0];
@@ -22,6 +22,29 @@ int findMin(vector<int>& nums)
         cin>>a;
     }
     return nums[left];
+}
+int findMin(vector<int> & nums)
+{
+    int len = nums.size();
+    int low = 0;
+    int high = len-1;
+    int mid;
+    while (low < high){
+        mid = low + (high - low)/2;
+        if (nums[mid] > nums[high]){
+            //means left is still at first part
+            low = mid+1;
+        }
+        else if (nums[mid] < nums[high]){
+            //mid is on the second part
+            high = mid;
+        }
+        else {
+            //nums[mid] == nums[high], hard to tell
+            high = high - 1;
+        }
+    }
+    return nums[low];
 }
 int main()
 {
